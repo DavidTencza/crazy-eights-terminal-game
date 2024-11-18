@@ -1,6 +1,6 @@
 # Crazy Eights Terminal Game
 #### Video Demo: 
-_(https://www.youtube.com/watch?v=M5YO1FvsnjM)_
+_(https://www.youtube.com/watch?v=ZXs4DBgHtkU)_
 #### Description: 
 _A Python-based implementation of the classic card game Crazy Eights, playable directly in the terminal. Players compete to reach a target score by playing cards in a turn-based system that follows the rules of Crazy Eights. The game supports two to four players, with one human player and up to three computer-controlled opponents._
 
@@ -22,7 +22,7 @@ The main objective in Crazy Eights is to be the first player to discard all card
    - **8**: 50 points
    - **10, J, Q, K**: 10 points each
    - **Ace**: 1 point
-   - **2-9**: face value
+   - **Other cards**: face value
 
 ### Win Condition:
 The game continues for multiple rounds until a player reaches the target score (50 points times the number of players).
