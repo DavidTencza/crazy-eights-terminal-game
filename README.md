@@ -74,4 +74,7 @@ To David J. Malan and Harvard University for making this course available for ev
 ## Updates
 _12-01-2024_
 - **Named Computer Opponents**: Rather than having "Computer 1", "Computer 2", "Computer 3" to refer to the opponents, instead have three names randomly selected from a list of 52 names.
-- **Bug fix: Multiple 8 cards for player in round**: Testing revealed that when the player used more than one crazy 8 card within a round, the chosen suit was still set to the suit chosen from the first played 8 card, resulting in the player not getting to make a suit choice. Fixed by immediately setting the chosen suit to None when the player uses a crazy 8 card. 
+- **Bug fix: Multiple 8 cards for player in round**: Testing revealed that when the player used more than one Crazy 8 card within a round, the chosen suit was still set to the suit chosen from the first played Crazy 8 card, resulting in the player not getting to make a suit choice. Fixed by immediately setting the chosen suit to None when the player uses a Crazy 8 card. 
+
+_12-02-2024_
+- **Refreshes of Named Computer Opponents**: When more than one game is played during a session, refresh the names instead of retaining the first set of names selected.
