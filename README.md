@@ -10,6 +10,7 @@ _A Python-based implementation of the classic card game Crazy Eights, playable d
 - [Design Choices](#design-choices)
 - [Developer](#developer)
 - [Special Thanks](#special-thanks)
+- [Updates](#updates)
 
 ## Game Objectives
 The main objective in Crazy Eights is to be the first player to discard all cards in your hand during each round. Players score points based on the remaining cards in opponents' hands. The first player to reach a score threshold, determined by the number of players, wins the game.
@@ -69,3 +70,8 @@ Developed by David Tencza, November 2024.
 
 ## Special Thanks
 To David J. Malan and Harvard University for making this course available for everyone. The lectures and exercises were enjoyable and educational! 
+
+## Updates
+_12-01-2024_
+- **Named Computer Opponents**: Rather than having "Computer 1", "Computer 2", "Computer 3" to refer to the opponents, instead have three names randomly selected from a list of 52 names.
+- **Bug fix: Multiple 8 cards for player in round**: Testing revealed that when the player used more than one crazy 8 card within a round, the chosen suit was still set to the suit chosen from the first played 8 card, resulting in the player not getting to make a suit choice. Fixed by immediately setting the chosen suit to None when the player uses a crazy 8 card. 
