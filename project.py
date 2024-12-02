@@ -14,7 +14,15 @@ SUIT_MAP = {
     'c': 'Clubs', 'clubs': 'Clubs', 'C': 'Clubs', 'Clubs': 'Clubs',
     's': 'Spades', 'spades': 'Spades', 'S': 'Spades', 'Spades': 'Spades'
 }
-
+NAMES_LIST = ['Alan', 'Barry', 'Chris', 'David', 'Edgar', 'Frank', 'George', 'Harry', 'Ivan', 
+              'John', 'Ken', 'Leo', 'Martin', 'Nate', 'Oswald', 'Peter', 'Quinn', 'Randall', 
+              'Steve', 'Tom', 'Umberto', 'Vince', 'Wally', 'Xavier', 'Yair', 'Zachary',
+              'Anna', 'Betty', 'Carla', 'Donna', 'Eleanor', 'Francine', 'Gina', 'Helen',
+              'Ingrid', 'Janet', 'Kelly', 'Linda', 'Mary', 'Nina', 'Olivia', 'Patty', 
+              'Quintina', 'Rachel', 'Samantha', 'Tammy', 'Ursula', 'Virginia', 'Wanda',
+              'Xiana', 'Yolanda', 'Zelda']
+NAMES = random.sample(NAMES_LIST, 3)
+NAMES.insert(0, 'Player')
 
 def create_deck():
     return [f'{rank} of {suit}' for suit in SUITS for rank in RANKS]
@@ -72,7 +80,7 @@ def show_instructions():
 
 def calculate_score(hand, i):
     score = 0
-    print(f"{'Player (YOU)' if i == 0 else 'Computer ' + str(i)} was holding:")
+    print(f"{'Player (YOU)' if i == 0 else NAMES[i]} was holding:")
     for card in hand:
         rank = get_rank(card)
         if rank == '8':
@@ -107,7 +115,7 @@ def crazy_eights(num_players):
             leader_index = scores.index(max(scores))
             for i, score in enumerate(scores):
                 status = LEADER_TAG if i == leader_index else ""
-                print(f"{'Player (YOU)' if i == 0 else 'Computer ' + str(i)}: {score} points {status}")
+                print(f"{'Player (YOU)' if i == 0 else NAMES[i]}: {score} points {status}")
             print(f"\nLeader needs {target_score - scores[leader_index]} more points to win. Target to win: {target_score} points.\n")
             time.sleep(.5)
             input("Press Enter to start the next round...")
@@ -133,7 +141,7 @@ def crazy_eights(num_players):
             # Show all players' card counts for the human player's turn
             if player_turn == 0:
                 print(f"Player's hand ({len(hands[0])} cards): {display_hand(hands[0])}")
-                print("\n".join([f"Computer {i} holds {len(hand)} card{'s' if len(hand) > 1 else ''}." for i, hand in enumerate(hands[1:], start=1)]))
+                print("\n".join([f"{NAMES[i]} holds {len(hand)} card{'s' if len(hand) > 1 else ''}." for i, hand in enumerate(hands[1:], start=1)]))
             
             current_hand = hands[player_turn]
             valid_moves = [i for i, card in enumerate(current_hand)
@@ -144,9 +152,9 @@ def crazy_eights(num_players):
                 if valid_moves:
                     move = None
                     while move not in valid_moves:
-                        move = input(f"Choose a card to play {[(i+1) for i in valid_moves]} or type 'D' to draw: ") #REMOVE FOR TESTING
+                        move = input(f"Choose a card to play {[(i+1) for i in valid_moves]} or type 'D' to draw: ") #LIVE, REMOVE FOR TESTING
                         #move = random.choice(valid_moves)  #TEST LINE FOR AUTOPLAY
-                        if move.upper() == 'D':
+                        if move.upper() == 'D': #REMOVE if block FOR TESTING TO AVOID ATTRIBUTE ERROR
                             move = 'D'
                             break
                         try:
@@ -169,11 +177,11 @@ def crazy_eights(num_players):
                         time.sleep(1)
                         
                         if get_rank(center_card) == CRAZY_EIGHT:
-                            while chosen_suit not in SUITS:
-                                user_input = input("Choose a new suit ([H]earts, [D]iamonds, [C]lubs, [S]pades): ").strip()
-                                chosen_suit = SUIT_MAP.get(user_input.capitalize(), None)
-                        else:
                             chosen_suit = None
+                            while chosen_suit not in SUITS:
+                                user_input = input("Choose a new suit ([H]earts, [D]iamonds, [C]lubs, [S]pades): ").strip() #LIVE
+                                #chosen_suit = random.choice(SUITS) #TEST
+                                chosen_suit = SUIT_MAP.get(user_input.capitalize(), None) #LIVE
                 else:
                     input("No valid moves. Press Enter to draw a card.") #REMOVE FOR TESTING SO IT JUST DRAWS
                     new_card = draw_card(deck)
@@ -182,23 +190,23 @@ def crazy_eights(num_players):
             
             else:  # Computer turns
                 turn_cnt += 1
-                print(f"\nComputer {player_turn}'s turn...")
+                print(f"\n{NAMES[player_turn]}'s turn...")
                 time.sleep(1)
                 if valid_moves:
                     move = random.choice(valid_moves)
                     chosen_card = current_hand.pop(move)
-                    print(f"Computer {player_turn} played:", chosen_card)
+                    print(f"{NAMES[player_turn]} played:", chosen_card)
                     center_card = chosen_card
                     discard_pile.append(center_card)
                     time.sleep(1)
                     
                     if get_rank(center_card) == CRAZY_EIGHT:
                         chosen_suit = random.choice(SUITS)
-                        print(f"Computer {player_turn} changed suit to:", chosen_suit)
+                        print(f"{NAMES[player_turn]} changed suit to:", chosen_suit)
                     else:
                         chosen_suit = None
                 else:
-                    print(f"Computer {player_turn} has no valid moves and draws a card.")
+                    print(f"{NAMES[player_turn]} has no valid moves and draws a card.")
                     time.sleep(1)
                     new_card = draw_card(deck)
                     current_hand.append(new_card)
@@ -220,13 +228,13 @@ def crazy_eights(num_players):
         print("\nSCORING")
         round_score = sum(calculate_score(hand, i) for i, hand in enumerate(hands) if i != round_winner)
         scores[round_winner] += round_score
-        print(f"**{'Player (YOU)' if round_winner == 0 else 'Computer ' + str(round_winner)} wins the round and earns {round_score} points!**")
+        print(f"**{'Player (YOU)' if round_winner == 0 else NAMES[round_winner]} wins the round and earns {round_score} points!**")
         round_num += 1
         turn_cnt = 0
     
     # Declare the winner of the game!
     winner = scores.index(max(scores))
-    print(f"\n***{'Player (YOU)' if winner == 0 else 'Computer ' + str(winner)} wins the game with {scores[winner]} points!***\n")
+    print(f"\n***{'Player (YOU)' if winner == 0 else NAMES[winner]} wins the game with {scores[winner]} points!***\n")
     input("Hit Enter to return to the Main Menu!")
     main()
 
