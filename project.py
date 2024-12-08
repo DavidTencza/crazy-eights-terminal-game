@@ -207,7 +207,11 @@ def crazy_eights(num_players):
                     time.sleep(1)
                     
                     if get_rank(center_card) == CRAZY_EIGHT:
-                        chosen_suit = random.choice(SUITS)
+                        if current_hand:
+                            curr_suits = [get_suit(card) for card in current_hand]
+                            chosen_suit = random.choice(curr_suits)
+                        else: #had no cards
+                            chosen_suit = random.choice(SUITS)
                         print(f"{names[player_turn]} changed suit to:", chosen_suit)
                     else:
                         chosen_suit = None
