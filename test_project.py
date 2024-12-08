@@ -42,8 +42,8 @@ def test_is_valid_play():
 
 
 def test_calculate_score():
-    assert calculate_score(["7 of Clubs", "J of Diamonds", "6 of Hearts", "9 of Spades", "K of Clubs"], 0) == 42
-    assert calculate_score(["9 of Diamonds", "8 of Hearts"], 1) == 59
-    assert calculate_score(["A of Hearts"], 2) == 1
-    assert calculate_score(["2 of Hearts", "3 of Hearts", "4 of Hearts", "5 of Hearts"], 3) == 14
-    assert calculate_score(["7 of Clubs", "J of Diamonds", "6 of Hearts", "9 of Spades"], 0) == 32
+    assert calculate_score(["7 of Clubs", "J of Diamonds", "6 of Hearts", "9 of Spades", "K of Clubs"], 0, ["Player", "Alan"]) == 42
+    assert calculate_score(["9 of Diamonds", "8 of Hearts"], 1, ["Player", "Barry"]) == 59
+    assert calculate_score(["A of Hearts"], 2, ["Player", "Tom", "Tammy"]) == 1
+    assert calculate_score(["2 of Hearts", "3 of Hearts", "4 of Hearts", "5 of Hearts"], 3, ["Player", "Rachel", "Nate", "David"]) == 14
+    assert calculate_score(["7 of Clubs", "J of Diamonds", "6 of Hearts", "9 of Spades"], 0, ["Player", "Olivia"]) == 32
