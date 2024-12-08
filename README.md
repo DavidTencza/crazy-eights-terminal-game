@@ -80,4 +80,4 @@ _12-02-2024_
 - **Refreshes of Named Computer Opponents**: When more than one game is played during a session, refresh the names instead of retaining the first set of names selected.
 
 _12-08-2024_
-- **Computer Opponents have smarter suit selection**: Computer opponents now randomly select a suit based on a list of the suits of the cards held in hand, instead of randomly selecting any suit.
+- **Computer Opponents have smarter suit selection**: When playing a Crazy 8, computer opponents now randomly select a suit based on a list of the suits of the cards held in hand, instead of randomly selecting any suit.
