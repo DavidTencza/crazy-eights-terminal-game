@@ -81,3 +81,6 @@ _12-02-2024_
 
 _12-08-2024_
 - **Computer Opponents have smarter suit selection**: When playing a Crazy 8, computer opponents now randomly select a suit based on a list of the suits of the cards held in hand, instead of randomly selecting any suit.
+
+_01-05-2025_
+- **Computer Opponents play 8 when others close to winning**: When at least one player has 2 or fewer cards in hand, computer opponents play an 8 card, over playing another valid card. The human player would sometimes win too quickly due to computer players holding their 8 cards until the end of the round.
