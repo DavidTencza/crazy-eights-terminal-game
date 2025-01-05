@@ -199,7 +199,19 @@ def crazy_eights(num_players):
                 print(f"\n{names[player_turn]}'s turn...")
                 time.sleep(1)
                 if valid_moves:
-                    move = random.choice(valid_moves)
+                    #If a hand other than the comp player has 2 or fewer, offload the 8 if present
+                    lengths = [len(hand) for hand in hands] 
+                    lengths.pop(player_turn)
+                    if min(lengths) <= 2:
+                        print(current_hand)
+                        # Check if there's an 8 card and find its index
+                        move = next((i for i, card in enumerate(current_hand) if card.startswith('8')), None)
+                        if move: 
+                            print(f"Playing an 8, move is {move}")
+                        if not move:
+                            move = random.choice(valid_moves)                       
+                    else:
+                        move = random.choice(valid_moves)
                     chosen_card = current_hand.pop(move)
                     print(f"{names[player_turn]} played:", chosen_card)
                     center_card = chosen_card
